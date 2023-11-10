@@ -1,0 +1,35 @@
+name: cargo
+adopt-info: cargo
+summary: Cargo downloads your Rust project’s dependencies and compiles your project.
+description: |
+    Cargo downloads your Rust project’s dependencies and compiles your project.
+    
+license: Apache-2.0
+
+base: core20
+grade: stable
+confinement: strict
+compression: lzo
+
+apps:
+  cargo:
+    command: bin/cargo
+    plugs:
+      - network
+      - home
+
+parts:
+  cargo:
+    source: https://github.com/rust-lang/cargo
+    source-type: git
+    plugin: rust
+    
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f2)"
+
+    build-packages:
+      - cargo
+      - rustc
+      - pkg-config
+      - librust-openssl-sys-dev
