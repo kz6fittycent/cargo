@@ -8,15 +8,12 @@ license: Apache-2.0
 
 base: core20
 grade: stable
-confinement: strict
+confinement: classic
 compression: lzo
 
 apps:
   cargo:
     command: bin/cargo
-    plugs:
-      - network
-      - home
 
 parts:
   cargo:
