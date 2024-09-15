@@ -6,7 +6,7 @@ description: |
     
 license: Apache-2.0
 
-base: core20
+base: core24
 grade: stable
 confinement: classic
 compression: lzo
@@ -22,8 +22,8 @@ parts:
     plugin: rust
     
     override-pull: |
-      snapcraftctl pull
-      snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f2)"
+      craftctl default
+      craftctl set version="$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"
 
     build-packages:
       - cargo
