@@ -30,3 +30,6 @@ parts:
       - rustc
       - pkg-config
       - librust-openssl-sys-dev
+
+    stage-packages:
+      - glibc-source
